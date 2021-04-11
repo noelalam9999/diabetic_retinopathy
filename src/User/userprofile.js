@@ -26,27 +26,17 @@ import MuiButton from '@material-ui/core/Button';
 
 const GET_USER = gql`
 query MyQuery($id: String) {
-  user(where: {id: {_eq: $id}}) {
-    name
-    location
-    user_type
-    User_Picture_link
-    reviews {
-      product_id
-      body
-      rating
-      status
-      product {
-        Name
-      }
-    }
-    products {
+  products(where: {user_id: {_eq: $id}}) {
+    
+    
+   
       Product_id
       Name
       Description
-    }
+   
   }
 }
+
 `;
 
 function TabPanel(props) {
@@ -112,20 +102,18 @@ function Userprofile(props){
     });
      if (loading) return "Loading...";
      if (error) return `Error! ${error.message}`;
-    console.log(data.user.user_type)
+  
 let user_type 
 let reviews_count = new Array()
-{data.user.map((user,index)=>(
-  <>
-  {user.reviews.map((reviews,index)=>(
-    reviews_count[index] = reviews
-         ) )}
-         </>
-       ) )}
-       
-    {data.user.map((user,index)=>(
-user_type = user.user_type
-     ) )}
+// {data.user.map((user,index)=>(
+//   <>
+//   {user.reviews.map((reviews,index)=>(
+//     reviews_count[index] = reviews
+//          ) )}
+//          </>
+//        ) )}
+      
+   
       return(
 
        
@@ -155,10 +143,10 @@ user_type = user.user_type
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Profile" {...a11yProps(0)} />
-          <Tab label="My Review History" {...a11yProps(1)} />
+          {/* <Tab label="Profile" {...a11yProps(0)} /> */}
+          <Tab label="My Reports" {...a11yProps(1)} />
           <Tab label="My Product History" {...a11yProps(2)} />
-          {user_type=="admin"  &&(
+          {/* {user_type=="admin"  &&(
              <Link to={"/admin/" + user.sub}>
           <Tab label="Admin Panel" {...a11yProps(3)} />
           </Link>
@@ -167,10 +155,12 @@ user_type = user.user_type
           <Link to={"/mod_reviews/" + user.sub}>
           <Tab label="Moderator Panel" {...a11yProps(4)} />
           </Link>
-          )}
+          )} */}
           </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+
+
+      {/* <TabPanel value={value} index={0}>
           <div style={{display: 'flex', displayDirection: 'row',paddingBottom: '40px', paddingTop:'40px', paddingLeft: '40px'}}>
                   <div style={{display: 'flex', flexDirection: 'row'}}>
                     <Link to='/upload_profile_pic'>
@@ -198,38 +188,35 @@ user_type = user.user_type
                 
                 </div>
               </div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-          {data.user.map((user,index)=>(
-          <>
-          {user.reviews.map((reviews,index)=>(
-          <>
-          <Card className={stylos.card}>
-              <CardContent>
-              {/* {reviews.product.map((product,index)=>( */}
-          <span style={{fontSize: '20px', fontStyle: 'bold'}}></span>
-          {/* ) )}    */}
-          <Typography>"{reviews.body}"</Typography>
-              </CardContent>
-              <CardActions>
-                {/* <Link to={"/product/" + reviews.product_id} >
-                <MuiButton >See Review</MuiButton>
-                </Link> */}
-                    <Typography>"{reviews.status}"</Typography>
-              </CardActions>
-          </Card>
+      </TabPanel> */}
+      <TabPanel value={value} index={0}>
+          {data.products.map((product,index)=>(
+        <>
+          
+           <Card className={stylos.card}> 
+               <CardContent> 
+             
+          <Typography>"{product.Name}"</Typography> 
+               </CardContent> 
+              <CardActions> 
+                 <Link to={"/product/" + product.Product_id} >
+                <MuiButton >See Report</MuiButton>
+                </Link> 
+                     <Typography>Age "{product.Description}"</Typography> 
+              </CardActions> 
+           </Card> 
 
-          </>
-              ) )}
-          </>
-              )
+           
+           </> 
+               )
             )
           }
-      </TabPanel>
+      </TabPanel> 
+
+      
       <TabPanel value={value} index={2}>
-      {data.user.map((user,index)=>(
-      <>
-      {user.products.map((products,index)=>(
+   
+      {data.products.map((products,index)=>(
       <>
       <Card className={stylos.card}>
               <CardContent>
@@ -242,8 +229,7 @@ user_type = user.user_type
                 </Link></MuiButton>
               </CardActions>
           </Card>
-        </>
-        ) )}
+        
         </>
       ) )}
         
