@@ -178,24 +178,7 @@ export function Product_upload(props) {
       return alert("fill all the mandatory fields first!");
     }
 
-    // const variables = {
-    //     writer: user.sub,
-    //     title: TitleValue,
-    //     description: DescriptionValue,
-    //     price: PriceValue,
-    //     images: image,
-    //     continents: ContinentValue,
-    // }
 
-    // Axios.post('/api/product/uploadProduct', variables)
-    //     .then(response => {
-    //         if (response.data.success) {
-    //             alert('Product Successfully Uploaded')
-    //             props.history.push('/')
-    //         } else {
-    //             alert('Failed to upload Product')
-    //         }
-    //     })
 
     let mod_id = new Array();
     {
@@ -230,7 +213,7 @@ export function Product_upload(props) {
     product_id.data.products.map(
       ({ Product_id }) => (product_id_var = Product_id + 1)
     );
-    history.push("/product/" + product_id_var);
+    history.push("/user/" + props.match.params.id);
   }
   return (
     <>

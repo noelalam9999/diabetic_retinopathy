@@ -52,7 +52,7 @@ export function TopNav() {
 
         {isAuthenticated && (
           <>
-            <Link className={styles.item_style} to={"/product_upload/" + user.sub}>
+            <Link   to={"/product_upload/" + user.sub}>
               Upload a new picture
             </Link>
             <div style={{ display: "flex", flexDirection: "row" }}>
