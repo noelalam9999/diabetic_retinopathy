@@ -192,7 +192,7 @@ let reviews_count = new Array()
       <TabPanel value={value} index={0}>
           {data.products.map((product,index)=>(
         <>
-          <img src={product.Product_picture_link}/>
+          <img width="200px" height="200px" src={product.Product_picture_link}/>
            <Card className={stylos.card}> 
                <CardContent> 
              
