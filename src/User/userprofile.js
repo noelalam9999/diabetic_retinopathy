@@ -28,8 +28,8 @@ const GET_USER = gql`
 query MyQuery($id: String) {
   products(where: {user_id: {_eq: $id}}) {
     
-    
-   
+    price
+   Product_picture_link
       Product_id
       Name
       Description
@@ -192,15 +192,15 @@ let reviews_count = new Array()
       <TabPanel value={value} index={0}>
           {data.products.map((product,index)=>(
         <>
-          
+          <img src={product.Product_picture_link}/>
            <Card className={stylos.card}> 
                <CardContent> 
              
           <Typography>"{product.Name}"</Typography> 
                </CardContent> 
               <CardActions> 
-                 <Link to={"/product/" + product.Product_id} >
-                <MuiButton >See Report</MuiButton>
+                 <Link to={"/product/" + props.match.params.id} >
+                <MuiButton >Level - {product.price}</MuiButton>
                 </Link> 
                      <Typography>Age "{product.Description}"</Typography> 
               </CardActions> 

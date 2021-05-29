@@ -26,6 +26,7 @@ const INSERT_PRODUCT_MOD = gql`
     $name: String!
     $description: String!
     $userId: String!
+    $price:Int!
     $moderator_id: String!
     $Link: String!
     $Link1: String!
@@ -33,6 +34,8 @@ const INSERT_PRODUCT_MOD = gql`
     insert_products(
       objects: [
         {
+          price:$price  
+          
           Name: $name
           Description: $description
           user_id: $userId
@@ -50,6 +53,7 @@ const INSERT_PRODUCT_MOD = gql`
 const INSERT_PRODUCT = gql`
   mutation(
     $name: String!
+    $price: Int! 
     $description: String!
     $userId: String!
     $Link: String!
@@ -61,6 +65,7 @@ const INSERT_PRODUCT = gql`
           Description: $description
           user_id: $userId
           store_location_link: $Link
+          price:$price
         }
       ]
     ) {
@@ -156,7 +161,7 @@ export function Product_upload(props) {
   };
   const [insert_product] = useMutation(INSERT_PRODUCT);
   const [insert_product_mod] = useMutation(INSERT_PRODUCT_MOD);
-
+  const rndInt = Math.floor(Math.random() * 6) + 1
   const [change_mod_status] = useMutation(CHANGE_MOD_STATUS);
 
   const { data } = useQuery(FIND_MOD);
@@ -195,7 +200,7 @@ export function Product_upload(props) {
     }
 
     insert_product_mod({
-        variables : {name, description, userId:props.match.params.id,moderator_id: mod_id[current_mod],Link:Link,Link1:image }
+        variables : {name, description,price:rndInt, userId:props.match.params.id,moderator_id: mod_id[current_mod],Link:Link,Link1:image }
   
 
     }).catch(function(error){
@@ -302,51 +307,7 @@ export function Product_upload(props) {
           
         </div>
       </div>
-      <Footer style={{padding:"20px"}}>
-        <Footer.Wrapper>
-          <Footer.Row>
-            <Footer.Column>
-              <Footer.Title>About Us</Footer.Title>
-              <Footer.Link href="#">Story</Footer.Link>
-              <Footer.Link href="#">Clients</Footer.Link>
-              <Footer.Link href="#">Testimonials</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Services</Footer.Title>
-              <Footer.Link href="#">Marketing</Footer.Link>
-              <Footer.Link href="#">Consulting</Footer.Link>
-              <Footer.Link href="#">Development</Footer.Link>
-              <Footer.Link href="#">Design</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Contact Us</Footer.Title>
-              <Footer.Link href="#">United States</Footer.Link>
-              <Footer.Link href="#">United Kingdom</Footer.Link>
-              <Footer.Link href="#">Australia</Footer.Link>
-              <Footer.Link href="#">Support</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Social</Footer.Title>
-              <Footer.Link href="#">
-                <Icon className="fab fa-facebook-f" />
-                Facebook
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-instagram" />
-                Instagram
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-youtube" />
-                Youtube
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-twitter" />
-                Twitter
-              </Footer.Link>
-            </Footer.Column>
-          </Footer.Row>
-        </Footer.Wrapper>
-      </Footer>
+      
     </>
   );
 }

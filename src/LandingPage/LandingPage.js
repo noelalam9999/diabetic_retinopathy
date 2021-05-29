@@ -67,64 +67,22 @@ export function LandingPage() {
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error :(</p>;
   return (
-    <div className={styles.landing1} >
+    <div style={{  backgroundColor:"white"  , backgroundRepeat  : 'no-repeat',minWidth:"100%"}} className={styles.landing1} >
       <TopNav />
-      <div style={{minHeight:"700px"}}>
+      <div style={{minHeight:"700px",color:"white!important"}}>
       <div style={{height:"100px"}}></div>
-        <h1 style={{textAlign:"center", fontSize:"40px", paddingTop:"20px", paddingBottom:"20px"}} >
-          Now check your Diabetic Retinopathy online.
+        <h1 style={{textAlign:"center",fontStyle:"helvetica", fontSize:"50px", paddingTop:"20px", paddingBottom:"20px"}} >
+          Check your Diabetic Retinopathy level in just 6 hours
         </h1>
-        <h2 style={{textAlign:"center", fontSize:"30px", paddingTop:"20px", paddingBottom:"20px"}}>
+        {!isAuthenticated && (
+        <h2 style={{textAlign:"center",fontStyle:"helvetica", fontSize:"20px", paddingTop:"20px", paddingBottom:"20px"}}>
           Please register with us & Upload an image of your retina.
         </h2>
+        )}
         <div style={{height:"100px"}}></div>
         <Body/>
       </div>    
-      <Footer style={{padding:"20px"}}>
-        <Footer.Wrapper>
-          <Footer.Row>
-            <Footer.Column>
-              <Footer.Title>About Us</Footer.Title>
-              <Footer.Link href="#">Story</Footer.Link>
-              <Footer.Link href="#">Clients</Footer.Link>
-              <Footer.Link href="#">Testimonials</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Services</Footer.Title>
-              <Footer.Link href="#">Marketing</Footer.Link>
-              <Footer.Link href="#">Consulting</Footer.Link>
-              <Footer.Link href="#">Development</Footer.Link>
-              <Footer.Link href="#">Design</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Contact Us</Footer.Title>
-              <Footer.Link href="#">United States</Footer.Link>
-              <Footer.Link href="#">United Kingdom</Footer.Link>
-              <Footer.Link href="#">Australia</Footer.Link>
-              <Footer.Link href="#">Support</Footer.Link>
-            </Footer.Column>
-            <Footer.Column>
-              <Footer.Title>Social</Footer.Title>
-              <Footer.Link href="#">
-                <Icon className="fab fa-facebook-f" />
-                Facebook
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-instagram" />
-                Instagram
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-youtube" />
-                Youtube
-              </Footer.Link>
-              <Footer.Link href="#">
-                <Icon className="fab fa-twitter" />
-                Twitter
-              </Footer.Link>
-            </Footer.Column>
-          </Footer.Row>
-        </Footer.Wrapper>
-      </Footer>
+     
     </div>
   );
   //   return(
