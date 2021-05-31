@@ -145,7 +145,7 @@ let reviews_count = new Array()
         >
           {/* <Tab label="Profile" {...a11yProps(0)} /> */}
           <Tab label="My Reports" {...a11yProps(1)} />
-          <Tab label="My Product History" {...a11yProps(2)} />
+          {/* <Tab label="My Product History" {...a11yProps(2)} /> */}
           {/* {user_type=="admin"  &&(
              <Link to={"/admin/" + user.sub}>
           <Tab label="Admin Panel" {...a11yProps(3)} />
@@ -214,7 +214,7 @@ let reviews_count = new Array()
       </TabPanel> 
 
       
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
    
       {data.products.map((products,index)=>(
       <>
@@ -233,7 +233,7 @@ let reviews_count = new Array()
         </>
       ) )}
         
-      </TabPanel>
+      </TabPanel> */}
       </div>          
       </div>   
       )}
